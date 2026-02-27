@@ -1,6 +1,6 @@
-import 'package:arcore_flutter_plugin/src/arcore_augmented_image.dart';
-import 'package:arcore_flutter_plugin/src/arcore_rotating_node.dart';
-import 'package:arcore_flutter_plugin/src/utils/vector_utils.dart';
+import 'package:arcore_flutter_plus/src/arcore_augmented_image.dart';
+import 'package:arcore_flutter_plus/src/arcore_rotating_node.dart';
+import 'package:arcore_flutter_plus/src/utils/vector_utils.dart';
 import 'package:flutter/services.dart';
 import 'package:meta/meta.dart';
 
@@ -15,7 +15,7 @@ typedef ArCorePlaneHandler = void Function(ArCorePlane plane);
 typedef ArCoreAugmentedImageTrackingHandler = void Function(
     ArCoreAugmentedImage);
 
-const UTILS_CHANNEL_NAME = 'arcore_flutter_plugin/utils';
+const UTILS_CHANNEL_NAME = 'arcore_flutter_plus/utils';
 
 class ArCoreController {
   static checkArCoreAvailability() async {
@@ -38,7 +38,7 @@ class ArCoreController {
     this.planeColor,
     this.debug = false,
   }) {
-    _channel = MethodChannel('arcore_flutter_plugin_$id');
+    _channel = MethodChannel('arcore_flutter_plus_$id');
     _channel.setMethodCallHandler(_handleMethodCalls);
     init();
   }

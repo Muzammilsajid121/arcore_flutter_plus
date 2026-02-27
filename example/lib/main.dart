@@ -1,6 +1,6 @@
 import 'app.dart';
 import 'package:flutter/material.dart';
-import 'package:arcore_flutter_plugin/arcore_flutter_plugin.dart'
+import 'package:arcore_flutter_plus/arcore_flutter_plus.dart'
     show ArCoreController;
 
 void main() async {

@@ -1,4 +1,4 @@
-import 'package:arcore_flutter_plugin/src/arcore_material.dart';
+import 'package:arcore_flutter_plus/src/arcore_material.dart';
 import 'package:flutter/widgets.dart';
 
 abstract class ArCoreShape {

@@ -3,7 +3,7 @@ import UIKit
 
 public class SwiftArcoreFlutterPlugin: NSObject, FlutterPlugin {
   public static func register(with registrar: FlutterPluginRegistrar) {
-    let channel = FlutterMethodChannel(name: "arcore_flutter_plugin", binaryMessenger: registrar.messenger())
+    let channel = FlutterMethodChannel(name: "arcore_flutter_plus", binaryMessenger: registrar.messenger())
     let instance = SwiftArcoreFlutterPlugin()
     registrar.addMethodCallDelegate(instance, channel: channel)
   }

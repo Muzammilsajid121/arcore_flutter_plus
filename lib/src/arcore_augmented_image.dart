@@ -1,4 +1,4 @@
-import 'package:arcore_flutter_plugin/src/arcore_pose.dart';
+import 'package:arcore_flutter_plus/src/arcore_pose.dart';
 
 class ArCoreAugmentedImage {
   String name;

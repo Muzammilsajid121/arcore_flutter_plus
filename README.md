@@ -5,7 +5,7 @@ An enhanced and updated version of the ARCore Flutter plugin. This package allow
 ---
 
 ### 🙏 Credits & Origin
-This package is a **maintained fork** of the original [arcore_flutter_plugin](https://pub.dev/packages/arcore_flutter_plugin) created by **Marco Gomiero**. 
+This package is a **maintained fork** of the original [arcore_flutter_plus](https://pub.dev/packages/arcore_flutter_plus) created by **Marco Gomiero**. 
 Since the original package has been inactive for several years, **arcore_flutter_plus** aims to keep the plugin alive by providing:
 * Compatibility with modern Flutter 3.x versions.
 * Support for updated Android SDKs.
@@ -58,7 +58,7 @@ arCoreController.addArCoreNode(node);
 The simplest code example:
 
 ```dart
-import 'package:arcore_flutter_plugin/arcore_flutter_plugin.dart';
+import 'package:arcore_flutter_plus/arcore_flutter_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:vector_math/vector_math_64.dart' as vector;
 

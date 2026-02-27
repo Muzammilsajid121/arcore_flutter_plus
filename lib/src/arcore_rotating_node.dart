@@ -1,5 +1,5 @@
-import 'package:arcore_flutter_plugin/src/arcore_node.dart';
-import 'package:arcore_flutter_plugin/src/shape/arcore_shape.dart';
+import 'package:arcore_flutter_plus/src/arcore_node.dart';
+import 'package:arcore_flutter_plus/src/shape/arcore_shape.dart';
 import 'package:flutter/widgets.dart';
 import 'package:vector_math/vector_math_64.dart';
 

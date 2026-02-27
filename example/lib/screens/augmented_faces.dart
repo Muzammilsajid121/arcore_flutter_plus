@@ -1,7 +1,6 @@
-import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
-import 'package:arcore_flutter_plugin/arcore_flutter_plugin.dart';
+import 'package:arcore_flutter_plus/arcore_flutter_plus.dart';
 import 'package:flutter/services.dart';
 
 class AugmentedFacesScreen extends StatefulWidget {

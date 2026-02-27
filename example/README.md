@@ -1,6 +1,6 @@
-# arcore_flutter_plugin_example
+# arcore_flutter_plus_example
 
-Demonstrates how to use the arcore_flutter_plugin plugin.
+Demonstrates how to use the arcore_flutter_plus plugin.
 
 ## Getting Started
 

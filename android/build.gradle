@@ -1,4 +1,4 @@
-group 'com.difrancescogianmarco.arcore_flutter_plugin'
+group 'com.muzammil.arcore.flutter.plus'
 version '1.0-SNAPSHOT'
 
 buildscript {
@@ -25,7 +25,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
-    namespace "com.example.arcore_flutter_plugin"
+    namespace "com.muzammil.arcore.flutter.plus"
     compileSdk 34
 
     sourceSets {

@@ -1,4 +1,4 @@
-import 'package:arcore_flutter_plugin/src/arcore_android_view.dart';
+import 'package:arcore_flutter_plus/src/arcore_android_view.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -36,7 +36,7 @@ class _ArCoreFaceViewState extends State<ArCoreFaceView>
     if (defaultTargetPlatform == TargetPlatform.android) {
       return Container(
         child: ArCoreAndroidView(
-          viewType: 'arcore_flutter_plugin',
+          viewType: 'arcore_flutter_plus',
           onPlatformViewCreated: _onPlatformViewCreated,
           arCoreViewType: ArCoreViewType.AUGMENTEDFACE,
           debug: widget.debug,

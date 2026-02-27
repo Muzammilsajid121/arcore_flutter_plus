@@ -1,4 +1,4 @@
-import 'package:arcore_flutter_plugin/arcore_flutter_plugin.dart';
+import 'package:arcore_flutter_plus/arcore_flutter_plus.dart';
 import 'package:flutter/material.dart';
 
 class AssetsObject extends StatefulWidget {

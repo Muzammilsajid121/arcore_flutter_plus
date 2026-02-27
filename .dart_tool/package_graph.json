@@ -1,11 +1,11 @@
 {
   "roots": [
-    "arcore_flutter_plugin"
+    "arcore_flutter_plus"
   ],
   "packages": [
     {
-      "name": "arcore_flutter_plugin",
-      "version": "0.1.1",
+      "name": "arcore_flutter_plus",
+      "version": "1.0.0",
       "dependencies": [
         "equatable",
         "flutter",
@@ -13,6 +13,24 @@
         "vector_math"
       ],
       "devDependencies": []
+    },
+    {
+      "name": "equatable",
+      "version": "2.0.8",
+      "dependencies": [
+        "collection",
+        "meta"
+      ]
+    },
+    {
+      "name": "meta",
+      "version": "1.17.0",
+      "dependencies": []
+    },
+    {
+      "name": "vector_math",
+      "version": "2.2.0",
+      "dependencies": []
     },
     {
       "name": "flutter",
@@ -27,13 +45,8 @@
       ]
     },
     {
-      "name": "meta",
-      "version": "1.17.0",
-      "dependencies": []
-    },
-    {
-      "name": "vector_math",
-      "version": "2.2.0",
+      "name": "collection",
+      "version": "1.19.1",
       "dependencies": []
     },
     {
@@ -49,22 +62,9 @@
       ]
     },
     {
-      "name": "collection",
-      "version": "1.19.1",
-      "dependencies": []
-    },
-    {
       "name": "characters",
       "version": "1.4.1",
       "dependencies": []
-    },
-    {
-      "name": "equatable",
-      "version": "2.0.8",
-      "dependencies": [
-        "collection",
-        "meta"
-      ]
     }
   ],
   "configVersion": 1

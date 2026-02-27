@@ -1,5 +1,5 @@
-import 'package:arcore_flutter_plugin/src/arcore_android_view.dart';
-import 'package:arcore_flutter_plugin/src/arcore_controller.dart';
+import 'package:arcore_flutter_plus/src/arcore_android_view.dart';
+import 'package:arcore_flutter_plus/src/arcore_controller.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -47,7 +47,7 @@ class _ArCoreViewState extends State<ArCoreView> with WidgetsBindingObserver {
     if (defaultTargetPlatform == TargetPlatform.android) {
       return Container(
         child: ArCoreAndroidView(
-          viewType: 'arcore_flutter_plugin',
+          viewType: 'arcore_flutter_plus',
           onPlatformViewCreated: _onPlatformViewCreated,
           arCoreViewType: widget.type,
           debug: widget.debug,
