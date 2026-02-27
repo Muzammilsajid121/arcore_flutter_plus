@@ -13,13 +13,17 @@ class FlutterArCoreShape(map: HashMap<String, *>) {
     val radius: Float? = (map["radius"] as? Double)?.toFloat()
     val size = DecodableUtils.parseVector3(map["size"] as? HashMap<String, Any>) ?: Vector3()
     val height: Float? = (map["height"] as? Double)?.toFloat()
+    val width: Float? = (map["width"] as? Double)?.toFloat()
+    val model: String? = map["model"] as? String
 
     fun buildShape(material: Material): ModelRenderable? {
         return when (dartType) {
             "ArCoreSphere" -> ShapeFactory.makeSphere(radius!!, Vector3(0.0f, 0.15f, 0.0f), material)
             "ArCoreCube" -> ShapeFactory.makeCube(size, Vector3(0.0f, 0.15f, 0.0f), material)
             "ArCoreCylinder" -> ShapeFactory.makeCylinder(radius!!, height!!, Vector3(0.0f, 0.15f, 0.0f), material)
-            else -> //TODO return exception
+            "ArCoreQuad" -> ShapeFactory.makeCube(Vector3(width ?: 1.0f, 0.001f, height ?: 1.0f), Vector3(0.0f, 0.0f, 0.0f), material)
+            "ArCoreCapsule" -> ShapeFactory.makeCylinder(radius ?: 0.5f, height ?: 1.0f, Vector3(0.0f, 0.15f, 0.0f), material)
+            else ->
                 null
         }
     }
