@@ -30,14 +30,14 @@ class ArCoreController {
     return arcoreInstalled;
   }
 
-  ArCoreController(
-      {required this.id,
-      this.enableTapRecognizer,
-      this.enablePlaneRenderer,
-      this.enableUpdateListener,
-      this.debug = false
-//    @required this.onUnsupported,
-      }) {
+  ArCoreController({
+    required this.id,
+    this.enableTapRecognizer,
+    this.enablePlaneRenderer,
+    this.enableUpdateListener,
+    this.planeColor,
+    this.debug = false,
+  }) {
     _channel = MethodChannel('arcore_flutter_plugin_$id');
     _channel.setMethodCallHandler(_handleMethodCalls);
     init();
@@ -48,6 +48,7 @@ class ArCoreController {
   final bool? enableTapRecognizer;
   final bool? enablePlaneRenderer;
   final bool? debug;
+  final Color? planeColor;
   late MethodChannel _channel;
   StringResultHandler? onError;
   StringResultHandler? onNodeTap;
@@ -64,6 +65,7 @@ class ArCoreController {
         'enableTapRecognizer': enableTapRecognizer,
         'enablePlaneRenderer': enablePlaneRenderer,
         'enableUpdateListener': enableUpdateListener,
+        'planeColor': planeColor?.value.toRadixString(16).padLeft(8, '0'),
       });
     } on PlatformException catch (ex) {
       print(ex.message);

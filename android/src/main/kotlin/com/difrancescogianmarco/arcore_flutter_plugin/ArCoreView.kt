@@ -4,6 +4,7 @@ import android.app.Activity
 import android.app.Application
 import android.content.Context
 import android.graphics.BitmapFactory
+import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
@@ -58,6 +59,7 @@ class ArCoreView(val activity: Activity, context: Context, messenger: BinaryMess
     private var faceRegionsRenderable: ModelRenderable? = null
     private var faceMeshTexture: Texture? = null
     private val faceNodeMap = HashMap<AugmentedFace, AugmentedFaceNode>()
+    private var planeColor: com.google.ar.sceneform.rendering.Color? = null
 
     init {
         methodChannel.setMethodCallHandler(this)
@@ -402,7 +404,18 @@ class ArCoreView(val activity: Activity, context: Context, messenger: BinaryMess
             debugLog(" The plane renderer (enablePlaneRenderer) is set to " + enablePlaneRenderer.toString())
             arSceneView!!.planeRenderer.isVisible = false
         }
-        
+
+        val planeColorStr: String? = call.argument("planeColor")
+        if (planeColorStr != null) {
+            planeColor = com.google.ar.sceneform.rendering.Color(android.graphics.Color.parseColor("#$planeColorStr"))
+        }
+
+        planeColor?.let {
+            arSceneView?.planeRenderer?.material?.thenAccept { material ->
+                material.setFloat3("color", it)
+            }
+        }
+
         result.success(null)
     }
 
@@ -545,6 +558,7 @@ class ArCoreView(val activity: Activity, context: Context, messenger: BinaryMess
                     if (isAugmentedFaces) {
                         config.augmentedFaceMode = Config.AugmentedFaceMode.MESH3D
                     }
+                    config.planeFindingMode = Config.PlaneFindingMode.HORIZONTAL_AND_VERTICAL
                     config.updateMode = Config.UpdateMode.LATEST_CAMERA_IMAGE
                     config.focusMode = Config.FocusMode.AUTO;
                     session.configure(config)

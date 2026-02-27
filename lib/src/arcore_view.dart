@@ -17,6 +17,7 @@ class ArCoreView extends StatefulWidget {
   final bool enableUpdateListener;
   final bool debug;
   final ArCoreViewType type;
+  final Color? planeColor;
 
   const ArCoreView(
       {Key? key,
@@ -26,6 +27,7 @@ class ArCoreView extends StatefulWidget {
       this.enablePlaneRenderer = true,
       this.enableUpdateListener = false,
       this.type = ArCoreViewType.STANDARDVIEW,
+      this.planeColor,
       this.debug = false})
       : super(key: key);
 
@@ -64,6 +66,7 @@ class _ArCoreViewState extends State<ArCoreView> with WidgetsBindingObserver {
       enableTapRecognizer: widget.enableTapRecognizer,
       enableUpdateListener: widget.enableUpdateListener,
       enablePlaneRenderer: widget.enablePlaneRenderer,
+      planeColor: widget.planeColor,
 //      onUnsupported: widget.onArCoreUnsupported,
     ));
   }
