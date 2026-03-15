@@ -2,12 +2,6 @@
 
 Introducing arcore flutter plus. This package allows you to experience Augmented Reality (AR) on Android devices using Google ARCore.
 
-<p align="center">
-  <img src="https://raw.githubusercontent.com/Muzammilsajid121/arcore_flutter_plus/main/doc_videos/glb_model_video.gif" width="220" />
-  &nbsp;&nbsp;&nbsp;&nbsp;
-  <img src="https://raw.githubusercontent.com/Muzammilsajid121/arcore_flutter_plus/main/doc_videos/distance_measure_video.gif" width="220" />
-</p>
-
 ---
 
 ## ✨ Key Enhancements (What's New?)
@@ -30,19 +24,22 @@ Since the original package has been inactive for several years, **arcore_flutter
 ---
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Muzammilsajid121/arcore_flutter_plus/main/doc_videos/glb_model_video.gif" width="220" alt="GLB Model Loading" />
-  <br />
-  <b>3D Model Placement example</b>
-  <br />
-  <br />
+  <span style="display: inline-block;">
+    <img src="https://raw.githubusercontent.com/Muzammilsajid121/arcore_flutter_plus/main/doc_videos/glb_model_video.gif" width="220" alt="GLB Model Loading" /><br />
+    <b>3D Model Placement</b>
+  </span>
   &nbsp;&nbsp;&nbsp;&nbsp;
-  <img src="https://raw.githubusercontent.com/Muzammilsajid121/arcore_flutter_plus/main/doc_videos/distance_measure_video.gif" width="220" alt="Distance Measurement" />
-  <br />
-  <b>Real-time Distance Measurement</b>
+  <span style="display: inline-block;">
+    <img src="https://raw.githubusercontent.com/Muzammilsajid121/arcore_flutter_plus/main/doc_videos/distance_measure_video.gif" width="220" alt="Distance Measurement" /><br />
+    <b>Distance Measurement</b>
+  </span>
 </p>
 
 
 ## 🚀 Getting Started
+
+### 📱 Platform Support
+This package is **Android-only** because it relies on Google's ARCore SDK. *(If you are looking for iOS AR support, consider using [`arkit_plugin`](https://pub.dev/packages/arkit_plugin))*
 
 ### 1. Requirements
 * **Android API Level:** 24 (Android 7.0) or higher.
@@ -217,7 +214,7 @@ class _ARDistanceMeasurerState extends State<ARDistanceMeasurer> {
     super.dispose();
   }
 }
-
+```
 
 ## Documentation 
 
