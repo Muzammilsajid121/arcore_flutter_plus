@@ -29,6 +29,19 @@ Since the original package has been inactive for several years, **arcore_flutter
 
 ---
 
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Muzammilsajid121/arcore_flutter_plus/main/doc_videos/glb_model_video.gif" width="220" alt="GLB Model Loading" />
+  <br />
+  <b>3D Model Placement example</b>
+  <br />
+  <br />
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="https://raw.githubusercontent.com/Muzammilsajid121/arcore_flutter_plus/main/doc_videos/distance_measure_video.gif" width="220" alt="Distance Measurement" />
+  <br />
+  <b>Real-time Distance Measurement</b>
+</p>
+
+
 ## 🚀 Getting Started
 
 ### 1. Requirements
