@@ -1,6 +1,6 @@
 name: arcore_flutter_plus
 description: Updated Flutter plugin for ARCore SDK, Android platform to build new augmented reality experiences
-version: 1.0.0
+version: 1.0.1
 homepage: https://github.com/Muzammilsajid121/arcore_flutter_plus
 
 environment:
