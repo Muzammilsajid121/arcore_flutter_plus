@@ -2,6 +2,12 @@
 
 Introducing arcore flutter plus. This package allows you to experience Augmented Reality (AR) on Android devices using Google ARCore.
 
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Muzammilsajid121/arcore_flutter_plus/main/doc_videos/glb_model_video.gif" width="220" />
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="https://raw.githubusercontent.com/Muzammilsajid121/arcore_flutter_plus/main/doc_videos/distance_measure_video.gif" width="220" />
+</p>
+
 ---
 
 ## ✨ Key Enhancements (What's New?)
@@ -15,7 +21,7 @@ In addition to all the original features, this version includes:
 ---
 
 ### 🙏 Credits & Origin
-This package is a **upgraded version** of the original [arcore_flutter_plus](https://pub.dev/packages/arcore_flutter_plus) created by **Marco Gomiero**. 
+This package is a **upgraded version** of the original [arcore_flutter_plugin](https://pub.dev/packages/arcore_flutter_plugin) created by **gdifrancesco**. 
 Since the original package has been inactive for several years, **arcore_flutter_plus** aims to keep the plugin alive by providing:
 * Compatibility with modern Flutter 3.x versions.
 * Support for updated Android SDKs.

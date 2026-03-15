@@ -38,3 +38,6 @@ ios/Flutter/flutter_export_environment.sh
 # Agar aap chahte hain ke example ke assets pub.dev par na jayen (size kam karne ke liye)
 # toh niche wali line uncomment kar dein:
 # example/assets/
+
+# Documentation assets
+doc_videos/
