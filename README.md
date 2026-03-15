@@ -24,15 +24,20 @@ Since the original package has been inactive for several years, **arcore_flutter
 ---
 
 <p align="center">
-  <span style="display: inline-block;">
-    <img src="https://raw.githubusercontent.com/Muzammilsajid121/arcore_flutter_plus/main/doc_videos/glb_model_video.gif" width="220" alt="GLB Model Loading" /><br />
-    <b>3D Model Placement</b>
-  </span>
-  &nbsp;&nbsp;&nbsp;&nbsp;
-  <span style="display: inline-block;">
-    <img src="https://raw.githubusercontent.com/Muzammilsajid121/arcore_flutter_plus/main/doc_videos/distance_measure_video.gif" width="220" alt="Distance Measurement" /><br />
-    <b>Distance Measurement</b>
-  </span>
+  <table align="center">
+    <tr>
+      <td align="center">
+        <img src="https://raw.githubusercontent.com/Muzammilsajid121/arcore_flutter_plus/main/doc_videos/glb_model_video.gif" width="220" alt="GLB Model Loading" />
+        <br />
+        <b>3D Model Placement</b>
+      </td>
+      <td align="center">
+        <img src="https://raw.githubusercontent.com/Muzammilsajid121/arcore_flutter_plus/main/doc_videos/distance_measure_video.gif" width="220" alt="Distance Measurement" />
+        <br />
+        <b>Distance Measurement</b>
+      </td>
+    </tr>
+  </table>
 </p>
 
 
