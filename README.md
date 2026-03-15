@@ -1,15 +1,6 @@
 # arcore_flutter_plus 🚀
 
-An enhanced and updated version of the ARCore Flutter plugin. This package allows you to experience Augmented Reality (AR) on Android devices using Google ARCore.
-
----
-
-### 🙏 Credits & Origin
-This package is a **maintained fork** of the original [arcore_flutter_plus](https://pub.dev/packages/arcore_flutter_plus) created by **Marco Gomiero**. 
-Since the original package has been inactive for several years, **arcore_flutter_plus** aims to keep the plugin alive by providing:
-* Compatibility with modern Flutter 3.x versions.
-* Support for updated Android SDKs.
-* New custom features and bug fixes.
+Introducing arcore flutter plus. This package allows you to experience Augmented Reality (AR) on Android devices using Google ARCore.
 
 ---
 
@@ -23,6 +14,15 @@ In addition to all the original features, this version includes:
 
 ---
 
+### 🙏 Credits & Origin
+This package is a **upgraded version** of the original [arcore_flutter_plus](https://pub.dev/packages/arcore_flutter_plus) created by **Marco Gomiero**. 
+Since the original package has been inactive for several years, **arcore_flutter_plus** aims to keep the plugin alive by providing:
+* Compatibility with modern Flutter 3.x versions.
+* Support for updated Android SDKs.
+* New custom features and bug fixes.
+
+---
+
 ## 🚀 Getting Started
 
 ### 1. Requirements
@@ -33,115 +33,168 @@ Add this to your `pubspec.yaml`:
 ```yaml
 dependencies:
   arcore_flutter_plus: ^1.0.0
+```
 
-### 3. Add Permisions
-Ensure your AndroidManifest.xml includes ARCore permissions:
+### 3. Add Permissions
+Ensure your `AndroidManifest.xml` includes Camera permissions:
 
-XML
+```xml
 <uses-permission android:name="android.permission.CAMERA" />
 <uses-feature android:name="android.hardware.camera.ar" />
+```
 
-## 4. Adding assets and models
+### 4. Adding assets and models
 Add your .glb models to android/app/src/main/assets/.
 
 📖 Usage Example: Placing a Model
-Dart
+```dart
 ArCoreReferenceNode node = ArCoreReferenceNode(
   name: "Tom",
   object3DFileName: "tom.glb",
   position: vector.Vector3(0, 0, -1.0),
 );
 arCoreController.addArCoreNode(node);
+```
 
-## Example
+## 📱 Example Project
 
-The simplest code example:
+You can find a complete, ready-to-run example project showcasing all features (including distance measurement, placing objects etc.) in the official examples repository:  
+🔗 **[arcore_flutter_examples](https://github.com/Muzammilsajid121/arcore_flutter_examples)**
+
+### The simplest code example:
 
 ```dart
-import 'package:arcore_flutter_plus/arcore_flutter_plus.dart';
-import 'package:flutter/material.dart';
-import 'package:vector_math/vector_math_64.dart' as vector;
+void main() => runApp(
+  const MaterialApp(
+    debugShowCheckedModeBanner: false,
+    home: AREmojiWorld(), ////-- uncomment to run this example
+    // home: ARDistanceMeasurer(),
+  ),
+);
 
-class HelloWorld extends StatefulWidget {
+////--Example 1 to calculate distance b/w 2 marks on floor
+
+class ARDistanceMeasurer extends StatefulWidget {
+  const ARDistanceMeasurer({super.key});
+
   @override
-  _HelloWorldState createState() => _HelloWorldState();
+  State<ARDistanceMeasurer> createState() => _ARDistanceMeasurerState();
 }
 
-class _HelloWorldState extends State<HelloWorld> {
-  ArCoreController arCoreController;
+class _ARDistanceMeasurerState extends State<ARDistanceMeasurer> {
+  ArCoreController? arCoreController;
+
+  // To store 2 points
+  ArCoreNode? startNode;
+  ArCoreNode? endNode;
+  String distanceText = "Tap on floor to place marks";
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Hello World'),
-        ),
-        body: ArCoreView(
-          onArCoreViewCreated: _onArCoreViewCreated,
-        ),
+    return Scaffold(
+      appBar: AppBar(title: const Text('AR Distance Meter')),
+      body: Stack(
+        children: [
+          ArCoreView(
+            onArCoreViewCreated: _onArCoreViewCreated,
+            enableTapRecognizer: true,
+            enablePlaneRenderer: true, // this will show dots
+            planeColor: Colors.red,
+          ),
+
+          // Distance display karne ke liye UI
+          Positioned(
+            top: 50,
+            left: 20,
+            child: Container(
+              padding: const EdgeInsets.all(12),
+              color: Colors.black54,
+              child: Text(
+                distanceText,
+                style: const TextStyle(color: Colors.white, fontSize: 18),
+              ),
+            ),
+          ),
+          Positioned(
+            bottom: 30,
+            left: 20,
+            child: FloatingActionButton(
+              onPressed: _resetMarks,
+              child: const Icon(Icons.refresh),
+            ),
+          ),
+        ],
       ),
     );
   }
 
   void _onArCoreViewCreated(ArCoreController controller) {
     arCoreController = controller;
-
-    _addSphere(arCoreController);
-    _addCylindre(arCoreController);
-    _addCube(arCoreController);
+    // Plane detection configuration
+    arCoreController?.onPlaneTap = _handleOnPlaneTap;
   }
 
-  void _addSphere(ArCoreController controller) {
-    final material = ArCoreMaterial(
-        color: Color.fromARGB(120, 66, 134, 244));
-    final sphere = ArCoreSphere(
-      materials: [material],
-      radius: 0.1,
-    );
-    final node = ArCoreNode(
-      shape: sphere,
-      position: vector.Vector3(0, 0, -1.5),
-    );
-    controller.addArCoreNode(node);
+  void _handleOnPlaneTap(List<ArCoreHitTestResult> hits) {
+    if (hits.isEmpty) return;
+    final hit = hits.first;
+
+    if (startNode == null) {
+      // 1st mark
+      startNode = _createMark(hit.pose.translation, Colors.red);
+      arCoreController?.addArCoreNode(startNode!);
+      setState(() {
+        distanceText = "First mark placed. Tap for second mark.";
+      });
+    } else if (endNode == null) {
+      // 2nd mark
+      endNode = _createMark(hit.pose.translation, Colors.blue);
+      arCoreController?.addArCoreNode(endNode!);
+
+      // Distance calculate
+      _calculateDistance();
+    }
   }
 
-  void _addCylindre(ArCoreController controller) {
-    final material = ArCoreMaterial(
-      color: Colors.red,
-      reflectance: 1.0,
-    );
-    final cylindre = ArCoreCylinder(
-      materials: [material],
-      radius: 0.5,
-      height: 0.3,
-    );
-    final node = ArCoreNode(
-      shape: cylindre,
-      position: vector.Vector3(0.0, -0.5, -2.0),
-    );
-    controller.addArCoreNode(node);
+  ArCoreNode _createMark(vector.Vector3 position, Color color) {
+    final material = ArCoreMaterial(color: color, metallic: 1.0);
+    final sphere = ArCoreSphere(materials: [material], radius: 0.03);
+    return ArCoreNode(shape: sphere, position: position);
   }
 
-  void _addCube(ArCoreController controller) {
-    final material = ArCoreMaterial(
-      color: Color.fromARGB(120, 66, 134, 244),
-      metallic: 1.0,
-    );
-    final cube = ArCoreCube(
-      materials: [material],
-      size: vector.Vector3(0.5, 0.5, 0.5),
-    );
-    final node = ArCoreNode(
-      shape: cube,
-      position: vector.Vector3(-0.5, 0.5, -3.5),
-    );
-    controller.addArCoreNode(node);
+  void _calculateDistance() {
+    if (startNode == null || endNode == null) return;
+
+    // .value lagana zaroori hai kyunki position ek ValueNotifier hai
+    final startPos = startNode!.position!.value;
+    final endPos = endNode!.position!.value;
+
+    // Distance Formula implementation
+    double dx = endPos.x - startPos.x;
+    double dy = endPos.y - startPos.y;
+    double dz = endPos.z - startPos.z;
+
+    // math.sqrt use  as prefix imported hai
+    double distance = math.sqrt(dx * dx + dy * dy + dz * dz);
+
+    setState(() {
+      distanceText = "Distance: ${(distance * 100).toStringAsFixed(2)} cm";
+    });
+  }
+
+  void _resetMarks() {
+    if (startNode != null)
+      arCoreController?.removeNode(nodeName: startNode!.name);
+    if (endNode != null) arCoreController?.removeNode(nodeName: endNode!.name);
+    startNode = null;
+    endNode = null;
+    setState(() {
+      distanceText = "Marks reset. Tap on floor again.";
+    });
   }
 
   @override
   void dispose() {
-    arCoreController.dispose();
+    arCoreController?.dispose();
     super.dispose();
   }
 }
@@ -151,17 +204,17 @@ class _HelloWorldState extends State<HelloWorld> {
 
 ### Classes provided by the plugin
 
-**There are a total of 13 classes provided by this plugin until Feb 20206.**
+**There are a total of 13 classes provided by this plugin.**
 
 - ArCoreView
 - ArCoreController
 - ArCoreFaceView
-- ArCoreFaceContrller
+- ArCoreFaceController
 - ArCoreSphere
 - ArCoreCylinder
 - ArCoreCube
 - ArCoreNode
-- ArCoeMaterial
+- ArCoreMaterial
 - ArCoreHitTestResult
 - ArCoreRotatingNode
 - ArCorePlane
@@ -178,7 +231,7 @@ This class returns the view type. There are two types of views in it.
 
 There are 4 properties in it:
 - onArCoreViewCreated
-- enableTapRecoginzer
+- enableTapRecognizer
 - enableUpdateListener
 - type
 
@@ -190,7 +243,7 @@ This property takes a **ArCoreController**.
 
 ---
 
-**enableTapRecoginzer**
+**enableTapRecognizer**
 
 Initially, set to false. It is used as an argument by the MethodChannel.
 
@@ -209,7 +262,7 @@ It is a view type, it is either **AUGMENTEDFACE, STANDARDVIEW***. It is set to *
 ---
 ### ArCoreController
 
-This controller used to add a ArNode using addArCoreNode function, add a ArCoreNode with ancher using a addArCoreNodeWithAncher function and also remove node using removeNode function.
+This controller is used to add an ArNode using the `addArCoreNode` function, add an ArCoreNode with an anchor using the `addArCoreNodeWithAnchor` function, and also remove a node using the `removeNode` function.
 
 ---
 
@@ -231,8 +284,8 @@ It is **ArCoreShape**, takes a **radius & ArCoreMaterial**.
 
 ---
 
-### ArCoreCylender
-It is **ArCoreShape**, takes a **radius, height, & ArCoreMaterial**.
+### ArCoreCylinder
+It is an **ArCoreShape**, takes a **radius, height, & ArCoreMaterial**.
 
 ---
 
@@ -279,4 +332,4 @@ URL of glft object for remote rendering.
 ---
 
 ### object3DFileName
-Filename of sfb object in assets folder.
+Filename of sfb, glb object in android/app/src/main/assets folder.
