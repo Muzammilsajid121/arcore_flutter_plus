@@ -1,3 +1,6 @@
+## 1.0.2
+* Updated documentation.
+
 ## 1.0.1
 * Added GIF demonstrations in README.
 * Updated documentation for model placement and distance measurement.

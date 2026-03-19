@@ -1,10 +1,10 @@
-# arcore_flutter_plus 🚀
+# arcore_flutter_plus 
 
 Introducing arcore flutter plus. This package allows you to experience Augmented Reality (AR) on Android devices using Google ARCore.
 
 ---
 
-## ✨ Key Enhancements (What's New?)
+##  Key Enhancements (What's New?)
 
 In addition to all the original features, this version includes:
 
@@ -88,8 +88,8 @@ You can find a complete, ready-to-run example project showcasing all features (i
 void main() => runApp(
   const MaterialApp(
     debugShowCheckedModeBanner: false,
-    home: AREmojiWorld(), ////-- uncomment to run this example
-    // home: ARDistanceMeasurer(),
+    //home: AREmojiWorld(), ////-- uncomment to run this example
+     home: ARDistanceMeasurer(),
   ),
 );
 
